@@ -1,4 +1,4 @@
-# Êý¾Ý¿âÔ­ÀíÓëÓ¦ÓÃ½Ì³ÌÁ·Ï°
+# æ•°æ®åº“åŽŸç†ä¸Žåº”ç”¨æ•™ç¨‹ç»ƒä¹ 
 >* author:smartZhou
 >* speciality:Computer Science and Technology
 >* My GitHub:[https://github.com/smartZdw](https://github.com/smartZdw)
@@ -6,7 +6,7 @@
 
 ---
 
->* ´´½¨inventory(²Ö¿â¿â´æ)µÄÊý¾Ý¿â,²¢ÉèÖÃÊý¾Ý¿âµÄÖ÷ÎÄ¼þÃûÎªinventory_data,³õÊ¼´óÐ¡Îª10MB,ÈÕÖ¾ÎÄ¼þÖÐÎªinventory_log,³õÊ¼´óÐ¡Îª2MB.ËùÓÐÎÄ¼þ¶¼·ÅÔÚÄ¿Â¼C:\DATA\..ÖÐ,ÒªÇó:inventroy_data×î´óÎªÎÞÏÞ´ó,Ôö³¤ËÙ¶ÈÎª20%,ÈÕÖ¾ÎÄ¼þ³õÊ¼´óÐ¡Îª2MB,×î´óÎª5MB, Ôö³¤ËÙ¶ÈÎª1MB¡£
+>* åˆ›å»ºinventory(ä»“åº“åº“å­˜)çš„æ•°æ®åº“,å¹¶è®¾ç½®æ•°æ®åº“çš„ä¸»æ–‡ä»¶åä¸ºinventory_data,åˆå§‹å¤§å°ä¸º10MB,æ—¥å¿—æ–‡ä»¶ä¸­ä¸ºinventory_log,åˆå§‹å¤§å°ä¸º2MB.æ‰€æœ‰æ–‡ä»¶éƒ½æ”¾åœ¨ç›®å½•C:\DATA\..ä¸­,è¦æ±‚:inventroy_dataæœ€å¤§ä¸ºæ— é™å¤§,å¢žé•¿é€Ÿåº¦ä¸º20%,æ—¥å¿—æ–‡ä»¶åˆå§‹å¤§å°ä¸º2MB,æœ€å¤§ä¸º5MB, å¢žé•¿é€Ÿåº¦ä¸º1MBã€‚
 ```sql-server
 CREATE DATABASE inventory
 ON PRIMARY                      --primary data file 
@@ -29,88 +29,88 @@ LOG ON							--log file
 
 ```
 
->* ´´½¨±í
+>* åˆ›å»ºè¡¨
 ```sql-server 
---´´½¨googdÉÌÆ·±í
+--åˆ›å»ºgoogdå•†å“è¡¨
 USE inventory 
 GO 
 CREATE TABLE goods 
 (
-	gno char(6)	          NOT NULL PRIMARY KEY,     --ÉÌÆ·±àºÅ
-	gname nvarchar(10)    NOT NULL,					--ÉÌÆ·Ãû³Æ 
-	price float			  NOT NULL,					--µ¥¼Û
-	producer nvarchar(30) NOT NULL					--Éú²úÉÌ
+	gno char(6)	          NOT NULL PRIMARY KEY,     --å•†å“ç¼–å·
+	gname nvarchar(10)    NOT NULL,					--å•†å“åç§° 
+	price float			  NOT NULL,					--å•ä»·
+	producer nvarchar(30) NOT NULL					--ç”Ÿäº§å•†
 )
 
---´´½¨store²Ö¿â±í
+--åˆ›å»ºstoreä»“åº“è¡¨
 USE inventory 
 GO
 CREATE TABLE store 
 (
-	stno char(3)	      NOT NULL PRIMARY KEY,							--²Ö¿â±àºÅ	
-	address nvarchar(30)  NOT NULL,										--²Ö¿âµØÖ·
-	telephone varchar(11) CHECK(telephone >= '0' and telephone <= '9'), --µç»°
-	capacity smallint													--ÈÝÁ¿ 
+	stno char(3)	      NOT NULL PRIMARY KEY,							--ä»“åº“ç¼–å·	
+	address nvarchar(30)  NOT NULL,										--ä»“åº“åœ°å€
+	telephone varchar(11) CHECK(telephone >= '0' and telephone <= '9'), --ç”µè¯
+	capacity smallint													--å®¹é‡ 
 )
 
---´´½¨invent¿â´æÇé¿ö±í
+--åˆ›å»ºinventåº“å­˜æƒ…å†µè¡¨
 USE inventory
 GO
 CREATE	TABLE invent
 (
-	stno char(3) CONSTRAINT fk_insto FOREIGN KEY REFERENCES store(stno),--²Ö¿â±àºÅ	 Íâ¼ü
-	gno  char(6) CONSTRAINT fk_ingno FOREIGN KEY REFERENCES goods(gno),	--ÉÌÆ·±àºÅ   Íâ¼ü
-	number int															--¿â´æÊýÁ¿ 
+	stno char(3) CONSTRAINT fk_insto FOREIGN KEY REFERENCES store(stno),--ä»“åº“ç¼–å·	 å¤–é”®
+	gno  char(6) CONSTRAINT fk_ingno FOREIGN KEY REFERENCES goods(gno),	--å•†å“ç¼–å·   å¤–é”®
+	number int															--åº“å­˜æ•°é‡ 
 )
 
---´´½¨manager¹ÜÀíÔ±±í
+--åˆ›å»ºmanagerç®¡ç†å‘˜è¡¨
 USE inventory 
 GO
 CREATE TABLE manager
 (
-	mno char(3) PRIMARY KEY,												--¹ÜÀíÔ±±àºÅ 
-	mname nvarchar(10) NOT NULL,											--¹ÜÀíÔ±ÐÕÃû 
-	sex nchar(1) CHECK(sex = 'ÄÐ' or sex = 'Å®'),							--ÐÔ±ð 
-	birthday date CHECK(birthday >= '1957-1-1' and birthday <= '2010-1-1'),	--³öÉúÄêÔÂ
-	stno char(3) CONSTRAINT fk_mstno FOREIGN KEY REFERENCES store(stno)     --²Ö¿â±àºÅ   Íâ¼ü
+	mno char(3) PRIMARY KEY,												--ç®¡ç†å‘˜ç¼–å· 
+	mname nvarchar(10) NOT NULL,											--ç®¡ç†å‘˜å§“å 
+	sex nchar(1) CHECK(sex = 'ç”·' or sex = 'å¥³'),							--æ€§åˆ« 
+	birthday date CHECK(birthday >= '1957-1-1' and birthday <= '2010-1-1'),	--å‡ºç”Ÿå¹´æœˆ
+	stno char(3) CONSTRAINT fk_mstno FOREIGN KEY REFERENCES store(stno)     --ä»“åº“ç¼–å·   å¤–é”®
 )
 
 ```
->* ²åÈëÊý¾Ý
+>* æ’å…¥æ•°æ®
 ```sql-server 
 insert into inventory.dbo.goods(gno,gname,price,producer) 
-values('bx-179','±ùÏä',3200,'Çàµºº£¶û')
+values('bx-179','å†°ç®±',3200,'é’å²›æµ·å°”')
 insert into inventory.dbo.goods(gno,gname,price,producer)
-values('bx-340','±ùÏä',2568,'±±¾©Ñ©»¨')
+values('bx-340','å†°ç®±',2568,'åŒ—äº¬é›ªèŠ±')
 insert into inventory.dbo.goods(gno,gname,price,producer)
-values('ds-001','µçÊÓ',1580,'ËÄ´¨³¤ºç')
+values('ds-001','ç”µè§†',1580,'å››å·é•¿è™¹')
 insert into inventory.dbo.goods(gno,gname,price,producer)
-values('ds-018','µçÊÓ',2980,'Çàµºº£¶û')
+values('ds-018','ç”µè§†',2980,'é’å²›æµ·å°”')
 insert into inventory.dbo.goods(gno,gname,price,producer)
-values('ds-580','µçÊÓ',6899,'ÄÏ¾©ÐÜÃ¨')
+values('ds-580','ç”µè§†',6899,'å—äº¬ç†ŠçŒ«')
 insert into inventory.dbo.goods(gno,gname,price,producer)
-values('kt-060','¿Õµ÷',3560,'Çàµºº£¶û')
+values('kt-060','ç©ºè°ƒ',3560,'é’å²›æµ·å°”')
 insert into inventory.dbo.goods(gno,gname,price,producer)
-values('kt-330','¿Õµ÷',4820,'Çàµºº£ÐÅ')
+values('kt-330','ç©ºè°ƒ',4820,'é’å²›æµ·ä¿¡')
 insert into inventory.dbo.goods(gno,gname,price,producer)
-values('xyj-01','Ï´ÒÂ»ú',980,'ÎÞÎýÐ¡Ìì¶ì')
+values('xyj-01','æ´—è¡£æœº',980,'æ— é”¡å°å¤©é¹…')
 insert into inventory.dbo.goods(gno,gname,price,producer)
-values('xyj-30','Ï´ÒÂ»ú',858,'ÄÏ¾©ÐÜÃ¨')
+values('xyj-30','æ´—è¡£æœº',858,'å—äº¬ç†ŠçŒ«')
 
 
 
 insert into inventory.dbo.store(stno,address,telephone,capacity)
-values('001','1ºÅÂ¥105','89000001',67)
+values('001','1å·æ¥¼105','89000001',67)
 insert into inventory.dbo.store(stno,address,telephone,capacity)
-values('002','1ºÅÂ¥106','89000002',78)
+values('002','1å·æ¥¼106','89000002',78)
 insert into inventory.dbo.store(stno,address,telephone,capacity)
-values('003','2ºÅÂ¥101','89000003',56)
+values('003','2å·æ¥¼101','89000003',56)
 insert into inventory.dbo.store(stno,address,telephone,capacity)
-values('004','2ºÅÂ¥102','89000004',77)
+values('004','2å·æ¥¼102','89000004',77)
 insert into inventory.dbo.store(stno,address,telephone,capacity)
-values('005','3ºÅÂ¥104','89000005',80)
+values('005','3å·æ¥¼104','89000005',80)
 insert into inventory.dbo.store(stno,address,telephone,capacity)
-values('006','3ºÅÂ¥108','89000006',65)
+values('006','3å·æ¥¼108','89000006',65)
 
 
 
@@ -139,32 +139,32 @@ values('003','xyj-30',21)
 
 
 insert into inventory.dbo.manager(mno,mname,sex,birthday,stno)
-values('101','ÕÅÁ¦','ÄÐ','1989-2-3 0:00:00','001')
+values('101','å¼ åŠ›','ç”·','1989-2-3 0:00:00','001')
 insert into inventory.dbo.manager(mno,mname,sex,birthday,stno)
-values('102','ÀîÃ÷','ÄÐ','1979-7-23 0:00:00','001')
+values('102','æŽæ˜Ž','ç”·','1979-7-23 0:00:00','001')
 insert into inventory.dbo.manager(mno,mname,sex,birthday,stno)
-values('103','Íõ»Ô','ÄÐ','1978-9-18 0:00:00','002')
+values('103','çŽ‹è¾‰','ç”·','1978-9-18 0:00:00','002')
 insert into inventory.dbo.manager(mno,mname,sex,birthday,stno)
-values('104','ÕÅ·ïÓñ','Å®','1978-9-12 0:00:00','002')
+values('104','å¼ å‡¤çŽ‰','å¥³','1978-9-12 0:00:00','002')
 insert into inventory.dbo.manager(mno,mname,sex,birthday,stno)
-values('105','ÁõÏþºê','ÄÐ','1990-5-25 0:00:00','003')
+values('105','åˆ˜æ™“å®','ç”·','1990-5-25 0:00:00','003')
 insert into inventory.dbo.manager(mno,mname,sex,birthday,stno)
-values('106','Ö£ÎÄ½Ü','ÄÐ','1972-9-6 0:00:00','003')
+values('106','éƒ‘æ–‡æ°','ç”·','1972-9-6 0:00:00','003')
 insert into inventory.dbo.manager(mno,mname,sex,birthday,stno)
-values('107','Ã÷Óî','ÄÐ','1989-4-2 0:00:00','004')
+values('107','æ˜Žå®‡','ç”·','1989-4-2 0:00:00','004')
 insert into inventory.dbo.manager(mno,mname,sex,birthday,stno)
-values('108','Õ²»¢ÐÂ','ÄÐ','1989-7-29 0:00:00','004')
+values('108','è©¹è™Žæ–°','ç”·','1989-7-29 0:00:00','004')
 insert into inventory.dbo.manager(mno,mname,sex,birthday,stno)
-values('109','ÀîÆ·»Û','Å®','1973-9-28 0:00:00','005')
+values('109','æŽå“æ…§','å¥³','1973-9-28 0:00:00','005')
 insert into inventory.dbo.manager(mno,mname,sex,birthday,stno)
-values('110','ÁõÀû»ª','ÄÐ','1980-5-3 0:00:00','005')
+values('110','åˆ˜åˆ©åŽ','ç”·','1980-5-3 0:00:00','005')
 insert into inventory.dbo.manager(mno,mname,sex,birthday,stno)
-values('111','ÍõÎÄÓî','ÄÐ','1980-5-23 0:00:00','006')
+values('111','çŽ‹æ–‡å®‡','ç”·','1980-5-23 0:00:00','006')
 insert into inventory.dbo.manager(mno,mname,sex,birthday,stno)
-values('101','Íõçâ','Å®','1978-8-13 0:00:00','006')
+values('101','çŽ‹çŽ®','å¥³','1978-8-13 0:00:00','006')
 
 ```
->* ²éÑ¯½á¹û
+>* æŸ¥è¯¢ç»“æžœ
 ```sql-server 
 select * from goods
 select * from store 
@@ -172,8 +172,11 @@ select * from invent
 select * from manager  
 ```
 
->* ²éÑ¯Ð§¹ûÍ¼
-![](https://raw.githubusercontent.com/smartZdw/image-/master/img/11.png) ![](https://raw.githubusercontent.com/smartZdw/image-/master/img/12.png)
-![invent](https://raw.githubusercontent.com/smartZdw/image-/master/img/13.png)   ![manager](https://raw.githubusercontent.com/smartZdw/image-/master/img/14.png)
+>* æŸ¥è¯¢æ•ˆæžœå›¾
+-----
+![](https://raw.githubusercontent.com/smartZdw/image-/master/img/11.png) 
+![](https://raw.githubusercontent.com/smartZdw/image-/master/img/12.png)
+![invent](https://raw.githubusercontent.com/smartZdw/image-/master/img/13.png) 
+![manager](https://raw.githubusercontent.com/smartZdw/image-/master/img/14.png)
 
 
