@@ -1,0 +1,3 @@
+--习题5
+--创建inventory(仓库库存)的数据库,并设置数据库的主文件名为inventory_data,初始大小为10MB,日志文件中为inventory_log,初始大小为2MB.所有文件都放在目录C:\DATA\..中
+--要求:inventroy_data最大为无限大,增长速度为20%,日志文件初始大小为2MB,最大为5MB, FjjdU
