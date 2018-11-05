@@ -173,9 +173,10 @@ select * from manager
 ```
 
 >* 查询效果图
------
+-----------
 ![](https://raw.githubusercontent.com/smartZdw/image-/master/img/11.png) 
 ![](https://raw.githubusercontent.com/smartZdw/image-/master/img/12.png)
+-----------
 ![invent](https://raw.githubusercontent.com/smartZdw/image-/master/img/13.png) 
 ![manager](https://raw.githubusercontent.com/smartZdw/image-/master/img/14.png)
 
